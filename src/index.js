@@ -1,10 +1,9 @@
 import inquirer from 'inquirer';
 
-import { RecintosZoo } from "./model/recintos-zoo.js";
+import { RecintosZoo } from "./recintos-zoo.js";
 
 const recintosZoo = new RecintosZoo();
 
-recintosZoo.preencherRecintos();
 const init = async () => {
     const response = await inquirer.prompt([{
         type: 'list',
@@ -49,7 +48,9 @@ const adicionarAnimalAoRecinto = async () => {
     ]);
 
     const { especie, quantidade } = response;
-    recintosZoo.analisaRecintos(especie, quantidade);
+    const resultado = recintosZoo.analisaRecintos(especie, quantidade);
+    console.log(resultado.recintosViaveis)
+    console.log(resultado.erro)
 
     init();
 }

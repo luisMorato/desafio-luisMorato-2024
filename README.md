@@ -45,7 +45,7 @@ Sua missão será construir a lógica para indicar os recintos onde novos animai
 ### REGRAS PARA ENCONTRAR UM RECINTO
 
 [X] 1- Um animal se sente confortável se está num bioma adequado e com espaço suficiente para cada indivíduo
-[] 2- Animais carnívoros devem habitar somente com a própria espécie
+[X] 2- Animais carnívoros devem habitar somente com a própria espécie
 [X] 3- Animais já presentes no recinto devem continuar confortáveis com a inclusão do(s) novo(s)
 [X] 4- Hipopótamo(s) só tolera(m) outras espécies estando num recinto com savana e rio
 [X] 5- Um macaco não se sente confortável sem outro animal no recinto, seja da mesma ou outra espécie
@@ -56,7 +56,7 @@ Por exemplo, se chegar um lote de 12 macacos, não é possível colocar 6 em 2 r
 ### ENTRADAS E SAÍDAS
 
 [X] 1- O programa deve receber tipo e quantidade de animal (nessa ordem)
-[] 2- O programa deve retornar uma estrutura contendo a lista de todos os recintos viáveis ordenada pelo número do recinto (caso existam) e a mensagem de erro (caso exista)
+[X] 2- O programa deve retornar uma estrutura contendo a lista de todos os recintos viáveis ordenada pelo número do recinto (caso existam) e a mensagem de erro (caso exista)
 [X] 3- A lista de recintos viáveis deve indicar o espaço livre que restaria após a inclusão do(s) animal(is) e o espaço total, no formato "Recinto nro (espaço livre: valorlivre total: valortotal)"
 [X] 4- Caso animal informado seja inválido, apresentar erro "Animal inválido"
 [X] 5- Caso quantidade informada seja inválida, apresentar erro "Quantidade inválida"

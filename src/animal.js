@@ -4,21 +4,21 @@ export class Animal {
     habitoAlimentar = 'herbivoro';
     bioma = [];
 
-    #animalsData = {
+    static dadosDosAnimais = {
         macaco: { tamanho: 1, bioma: ['savana', 'floresta'], habitoAlimentar: 'herbivoro' },
         leopardo: { tamanho: 2, bioma: ['savana'], habitoAlimentar: 'carnivoro' },
         gazela: { tamanho: 2, bioma: ['savana'], habitoAlimentar: 'herbivoro' },
         leao: { tamanho: 3, bioma: ['savana'], habitoAlimentar: 'carnivoro' },
         crocodilo: { tamanho: 3, bioma: ['rio'], habitoAlimentar: 'carnivoro' },
-        hipopotamo: { tamanho: 3, bioma: ['rio', 'savana'], habitoAlimentar: 'herbivoro' },
+        hipopotamo: { tamanho: 4, bioma: ['rio', 'savana'], habitoAlimentar: 'herbivoro' },
     };
 
     constructor(especie) {
-        const data = this.#animalsData[especie];
+        const data = Animal.dadosDosAnimais[especie];
 
         this.especie = especie;
-        this.tamanho = data.tamanho
-        this.bioma = data.bioma
-        this.habitoAlimentar = data.habitoAlimentar
+        this.tamanho = data.tamanho;
+        this.bioma = data.bioma;
+        this.habitoAlimentar = data.habitoAlimentar;
     }
 }
