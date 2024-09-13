@@ -58,7 +58,12 @@ class RecintosZoo {
                 bioma: recinto.bioma,
                 capacidadeTotal: recinto.capacidadeTotal,
                 areasLivres: recinto.areasLivres,
-                animaisExistentes: recinto.animaisExistentes.map((animal) => animal.especie)
+                animaisExistentes: recinto.animaisExistentes.map((animal) => {
+                    return {
+                        especie: animal.especie,
+                        habitoAlimentar: animal.habitoAlimentar
+                    }
+                })
             }
         });
     }
@@ -99,7 +104,9 @@ class RecintosZoo {
             :
                 espacoOcupadoEspecieDiferente
 
-            return { espacoUtilizado, estaDisponivel:recinto.areasLivres >= espacoUtilizado};
+            const estaDisponivel = recinto.areasLivres >= espacoUtilizado;
+
+            return { espacoUtilizado, estaDisponivel };
         }
 
         const biomasDoAnimal = animalParaAdicionar.bioma; //Variável auxiliar para identificar quais os biomas de uma determinada espécie
@@ -117,7 +124,7 @@ class RecintosZoo {
             if(!estaDisponivel) return;
 
             //Variável auxiliar que checa se existem animais carnívoros no recinto e recebe um valor booleano
-            const possuiAnimaisCarnivoros = recinto.animaisExistentes.some((animal) => animal.habitoAlimentar === 'carnivoro');
+            const possuiAnimaisCarnivoros = !!recinto.animaisExistentes.some((animal) => animal.habitoAlimentar === 'carnivoro');
 
             switch(animalParaAdicionar.especie) {
                 case 'hipopotamo': {
@@ -182,7 +189,7 @@ class RecintosZoo {
         const recintosViaveis = this.recintos
         .map((recinto) => {
             const { espacoUtilizado } = checarPorAreasDisponiveis(recinto); //Variável que contém o valor do espaço a ser utilizado pelo novo animal
-            const espacoLivre = recinto.areasLivres - espacoUtilizado; //Variável que calcula o espaço restante após a adição do novo animal
+            const espacoLivre = (recinto.areasLivres - espacoUtilizado); //Variável que calcula o espaço restante após a adição do novo animal
 
             //Realiza a comparação entre os recintos encontrados e todos os recintos cadastrados para ter acesso à todos os dados do recinto
             if(!!recintosOrdenados.some(numeroRecintoViavel => numeroRecintoViavel === recinto.numeroDoRecinto)){

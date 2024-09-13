@@ -77,19 +77,23 @@ describe('Recintos do Zoologico', () => {
     test('Deve encontrar recintos para as gazelas sem a presença de animais carnívoros', () => {
         const resultado = new RecintosZoo().analisaRecintos('GAZELA', 2);
         const recintos = new RecintosZoo().listarRecintos();
-
         expect(resultado.erro).toBeFalsy();
 
         let animaisCarnívoros = [];
         
         recintos.forEach((recinto) => {
-            if(resultado.recintosViaveis.some((recintoViavel) => recintoViavel.charAt(8) == recinto.numeroDoRecinto)){
-                recinto.animaisExistentes.some((animal) => {
-                    if(animal.habitoAlimentar === 'carnivoro'){
-                        animaisCarnívoros = [...animaisCarnívoros, animal.especie]
-                    }
-                })
-            }
+            const numeroRecintoViavel = resultado.recintosViaveis.some((recintoViavel) => {
+                const numeroDoRecinto = recintoViavel.match(/Recinto \d+/)[0].split(' ')[1];
+                return numeroDoRecinto == recinto.numeroDoRecinto
+            });
+
+            if(!numeroRecintoViavel) return;
+
+            recinto.animaisExistentes.forEach((animal) => {
+                if(animal.habitoAlimentar === 'carnivoro'){
+                    animaisCarnívoros = [...animaisCarnívoros, animal.especie]
+                }
+            });
         });
 
         expect(animaisCarnívoros.length).toBe(0);
@@ -102,7 +106,20 @@ describe('Recintos do Zoologico', () => {
             bioma: [ 'savana' ],
             capacidadeTotal: 10,
             areasLivres: 7,
-            animaisExistentes: [ 'macaco', 'macaco', 'macaco' ]
+            animaisExistentes: [ 
+                {
+                    especie: 'macaco', 
+                    habitoAlimentar: 'herbivoro'
+                },
+                {
+                    especie: 'macaco', 
+                    habitoAlimentar: 'herbivoro'
+                }, 
+                {
+                    especie: 'macaco', 
+                    habitoAlimentar: 'herbivoro'
+                },  
+            ]
           });
         expect(recintos.length).toBe(5);
     });

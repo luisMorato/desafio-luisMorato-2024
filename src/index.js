@@ -4,7 +4,7 @@ import { RecintosZoo } from "./recintos-zoo.js";
 
 const recintosZoo = new RecintosZoo();
 
-recintosZoo.listarRecintos();
+console.log(recintosZoo.listarRecintos());
 
 //Possíveis
 const resposta1 = recintosZoo.analisaRecintos('LEAO', 2);
